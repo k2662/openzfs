@@ -20,7 +20,7 @@ jobs:
       #    sudo spctl kext-consent disable
       - name: install deps
         run: |
-          brew install automake libtool gawk coreutils
+          brew install automake libtool gawk coreutils openssl gcc
       #- name: install deps
       #  run: |
           #brew install openssl@1.1
@@ -30,13 +30,10 @@ jobs:
       - name: configure
         run: |
           #https://stackoverflow.com/a/62591864
-          ./configure CPPFLAGS="-I/usr/local/opt/gettext/include -I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/gettext/lib/ -L/usr/local/opt/openssl@1.1/lib"
+          ./configure CPPFLAGS="-I/usr/local/opt/gettext/include -I/usr/local/opt/openssl@3/include" LDFLAGS="-L/usr/local/opt/gettext/lib/ -L/usr/local/opt/openssl@3/lib"
       - name: build
         run: |
           make -j$(sysctl -n hw.ncpu)
-      - name: install
-        run: |
-          sudo make install DESTDIR=///
 
       #- name: load
       #  run: |
