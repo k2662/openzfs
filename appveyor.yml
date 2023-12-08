@@ -19,8 +19,7 @@ build_script:
 
     sh autogen.sh
 
-    ./configure CPPFLAGS="-I/usr/local/opt/gettext/include -I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/gettext/lib/ -L/usr/local/opt/openssl@1.1/lib" CFLAGS="-g -O2"  --sysconfdir=/etc --localstatedir=/var --prefix=/usr/local/zfs --sbindir=/usr/local/zfs/bin --enable-debug
-
+    ./configure CPPFLAGS="-I/usr/local/opt/gettext/include -I/usr/local/opt/openssl@1.1/include" LDFLAGS="-L/usr/local/opt/gettext/lib/ -L/usr/local/opt/openssl@1.1/lib" CFLAGS="-g -O2"  --sysconfdir=/etc --localstatedir=/var --prefix=/usr/local/zfs --sbindir=/usr/local/zfs/bin
 
     echo "Checking codestyle"
 
@@ -28,11 +27,11 @@ build_script:
 
 
 
-    make -j2 # V=1
+    make -j4 # V=1
 
 
 
-    sudo make -j2 V=1 install
+    sudo make -j4 V=1 install
 test_script:
 - sh: >-
     # log stream --source --predicate 'sender == "zfs"' --style compact  &
